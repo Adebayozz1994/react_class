@@ -7,11 +7,17 @@ import Footer from "./components/footer"
 import Buttonn from "./components/Button"
 import Tenary from "./components/Tenary"
 import Assignment from "./components/assignment"
+import Fetch from "./components/Fetch"
+import Classwork from "./components/classwork"
+import Sportify from "./components/Sportify"
 
 function App () {
   return(
     <>
-    <Assignment />
+    <Sportify/>
+    {/* <Classwork/> */}
+    {/* <Fetch/> */}
+    {/* <Assignment /> */}
     {/* <Tenary /> */}
     {/* <About/> */}
     {/* <Footer/> */}

@@ -44,12 +44,12 @@ const Tenary = () => {
         <div>
                 <input type="text" onChange={user} placeholder='first name' value={firstName} />
                 <input type="text" onChange={user1} placeholder='last name' value={lastName} />
-                <input type="text" onChange={user2} placeholder='last name' value={email} />
-                <input type="text" onChange={user3} placeholder='last name' value={password} />
-                <button onClick={changeName}>change name</button>
-            <h2>
+                <input type="email" onChange={user2} placeholder='Email' value={email} />
+                <input type="password" onChange={user3} placeholder='Password' value={password} />
+                <button onClick={changeName}>Submit</button>
+            {/* <h2>
                 {name}
-            </h2>
+            </h2> */}
             <h1>
                 {allUsers.map((user, index) => (
                     <div key={index}>
