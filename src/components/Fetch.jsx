@@ -16,17 +16,24 @@ function Fetch() {
       console.log(response.data);
       setData(response.data)
     })
-
   }
-
+  // useEffect(() => {
+  //  console.log("useEffect");
+  //  fetchData();
+  // }, [])
+  
+  
   return (
     <div>
       <h1>Fetch</h1>
+      <section className='flex items-center justify-center'>
       <button className='bg-green-700 rounded-md' onClick={fetchData}>Fetch</button>
       {data.map((item, index) => (
         <div key={index}>
           {item.name}</div>
       ))};
+
+      </section>
     </div>
   );
 };

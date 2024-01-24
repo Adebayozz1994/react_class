@@ -11,9 +11,12 @@ import Fetch from "./components/Fetch"
 import Classwork from "./components/classwork"
 import Sportify from "./components/Sportify"
 
+
 function App () {
   return(
     <>
+    
+    
     <Sportify/>
     {/* <Classwork/> */}
     {/* <Fetch/> */}
