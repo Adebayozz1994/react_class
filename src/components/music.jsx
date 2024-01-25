@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 const Sportify = () => {
@@ -8,6 +8,8 @@ const Sportify = () => {
   const playlistId = "37i9dQZF1DWUf3j9Rl2IUG"; // Replace with the actual playlist ID
 
   const [playlistInfo, setPlaylistInfo] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const audioRef = useRef(new Audio());
 
   const getToken = () => {
     const headers = {
@@ -46,6 +48,19 @@ const Sportify = () => {
       });
   };
 
+  const playAudio = (previewUrl) => {
+    if (currentTrack === previewUrl) {
+      // If the same track is clicked again, toggle play/pause
+      audioRef.current.paused ? audioRef.current.play() : audioRef.current.pause();
+    } else {
+      // Pause the current track and start playing the new one
+      audioRef.current.pause();
+      setCurrentTrack(previewUrl);
+      audioRef.current.src = previewUrl;
+      audioRef.current.play();
+    }
+  };
+
   return (
     <main>
       <h1>Sportify</h1>
@@ -66,7 +81,12 @@ const Sportify = () => {
               <p>Album: {track.track.album.name}</p>
               <p>Duration: {track.track.duration_ms} ms</p>
               {track.track.preview_url && (
-                <audio key={i} src={track.track.preview_url} controls></audio>
+                <div key={i}>
+                  <button onClick={() => playAudio(track.track.preview_url)}>
+                    {currentTrack === track.track.preview_url && !audioRef.current.paused ? "Pause" : "Play"}
+                  </button>
+                  <audio key={i} src={track.track.preview_url} controls></audio>
+                </div>
               )}
             </div>
           ))}
