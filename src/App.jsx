@@ -10,14 +10,15 @@ import Assignment from "./components/assignment"
 import Fetch from "./components/Fetch"
 import Classwork from "./components/classwork"
 import Sportify from "./components/Sportify"
+import Music from "./components/music"
 
 
 function App () {
   return(
     <>
     
-    
-    <Sportify/>
+    <Music/>
+    {/* <Sportify/> */}
     {/* <Classwork/> */}
     {/* <Fetch/> */}
     {/* <Assignment /> */}
