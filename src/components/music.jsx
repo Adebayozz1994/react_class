@@ -62,38 +62,52 @@ const Sportify = () => {
   };
 
   return (
-    <main>
-      <h1>Sportify</h1>
-      <button onClick={getToken}>Get Music</button>
+    <main className="container mx-auto my-8 ">
+      <h1 className="text-7xl font-bold font mb-4 text-center">Sportify</h1>
+      <div className="flex items-center justify-center mb-4">
+        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={getToken}>
+          Get Music
+        </button>
+      </div>
 
       {playlistInfo && (
-        <div>
-          <h2>Playlist Information:</h2>
+        <div className="mt-8 text-center">
+          <h2 className="text-2xl font-bold mb-4">Playlist Information:</h2>
           <p>Title: {playlistInfo.name}</p>
           <p>Owner: {playlistInfo.owner.display_name}</p>
           <p>Total Tracks: {playlistInfo.tracks.total}</p>
 
-          <h3>Tracks:</h3>
-          {playlistInfo.tracks.items.map((track, i) => (
-            <div key={i}>
-              <p>Title: {track.track.name}</p>
-              <p>Artist(s): {track.track.artists.map(artist => artist.name).join(', ')}</p>
-              <p>Album: {track.track.album.name}</p>
-              <p>Duration: {track.track.duration_ms} ms</p>
-              {track.track.preview_url && (
-                <div key={i}>
-                  <button onClick={() => playAudio(track.track.preview_url)}>
-                    {currentTrack === track.track.preview_url && !audioRef.current.paused ? "Pause" : "Play"}
-                  </button>
-                  <audio key={i} src={track.track.preview_url} controls></audio>
-                </div>
-              )}
-            </div>
-          ))}
+          <h3 className="text-xl font-bold mb-2">Tracks:</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {playlistInfo.tracks.items.map((track, i) => (
+              <div key={i} className="mb-4 p-4 border border-gray-600 rounded-md">
+                <p className="text-lg font-bold mb-2">{track.track.name}</p>
+                <p className="text-sm text-green-500 mb-2">{track.track.artists.map(artist => artist.name).join(', ')}</p>
+                <img src={track.track.album.images[0].url} alt={track.track.name} className="w-full h-40 object-cover mb-2 rounded-md" />
+                {track.track.preview_url && (
+                  <div className="flex items-center">
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                      onClick={() => playAudio(track.track.preview_url)}
+                    >
+                      {currentTrack === track.track.preview_url && !audioRef.current.paused ? "Pause" : "Play"}
+                    </button>
+                    <audio className="ml-2" src={track.track.preview_url} controls></audio>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </main>
   );
 };
-
 export default Sportify;
+
+
+
+
+ 
+
+
