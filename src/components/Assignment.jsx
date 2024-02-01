@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
+import axios from "axios"
+import { Toast } from 'bootstrap';
+
+
+
+
+
+
+
 
 const Tenary = () => {
+    let url = "http://localhost:9000/register";
+
     // const [name, setName] = useState("SQI template")
     const [allUsers, setAllUsers] = useState([]);
     const [firstName, setFirstName] = useState('');
@@ -31,7 +42,14 @@ const Tenary = () => {
             password,
         };
 
+        
+
         setAllUsers((prevUsers) => [...prevUsers, newUser]);
+        axios.post(url , newUser)
+        .then((res)=>{
+            console.log(res.data);
+            Toast.success("user added successfully")
+        })
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -50,13 +68,13 @@ const Tenary = () => {
             {/* <h2>
                 {name}
             </h2> */}
-            <h1>
+            {/* <h1>
                 {allUsers.map((user, index) => (
                     <div key={index}>
                         {user.firstName} {user.lastName} {user.email} {user.password}
                     </div>
                 ))}
-            </h1>
+            </h1> */}
 
         </div>
     )

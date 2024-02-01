@@ -6,7 +6,7 @@ import Main from "./components/Main"
 import Footer from "./components/footer"
 import Buttonn from "./components/Button"
 import Tenary from "./components/Tenary"
-import Assignment from "./components/assignment"
+import Assignment from "./components/Assignment"
 import Fetch from "./components/Fetch"
 import Classwork from "./components/classwork"
 import Sportify from "./components/Sportify"
@@ -17,11 +17,11 @@ function App () {
   return(
     <>
     
-    <Music/>
+    {/* <Music/> */}
     {/* <Sportify/> */}
     {/* <Classwork/> */}
     {/* <Fetch/> */}
-    {/* <Assignment /> */}
+    <Assignment />
     {/* <Tenary /> */}
     {/* <About/> */}
     {/* <Footer/> */}

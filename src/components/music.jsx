@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
-const Sportify = () => {
+const Spotify = () => {
   const endPoint = "https://accounts.spotify.com/api/token";
   const clientId = "ca21267b426043469adc328407c44ac5";
   const clientSecret = "09e6167430754791b95fdb6967bafc0a";
-  const playlistId = "37i9dQZF1DWUf3j9Rl2IUG"; // Replace with the actual playlist ID
+  const playlistId = "37i9dQZF1DWUf3j9Rl2IUG"; 
 
   const [playlistInfo, setPlaylistInfo] = useState(null);
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -20,40 +20,40 @@ const Sportify = () => {
     data.append('client_secret', clientSecret);
     data.append('grant_type', 'client_credentials');
 
-    // Send POST request to get access token
+    
     axios.post(endPoint, data, { headers })
       .then(response => {
         const accessToken = response.data.access_token;
 
-        // Set the headers for the playlist request
+        
         const playlistHeaders = {
           'Authorization': `Bearer ${accessToken}`,
         };
 
-        // Send GET request to get playlist information
+        
         axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers: playlistHeaders })
           .then(playlistResponse => {
-            // Handle the playlist response
+            
             setPlaylistInfo(playlistResponse.data);
             console.log(playlistResponse.data);
           })
           .catch(playlistError => {
-            // Handle playlist errors
+            
             console.error('Error fetching playlist:', playlistError);
           });
       })
       .catch(error => {
-        // Handle errors
+        
         console.error('Error fetching token:', error);
       });
   };
 
   const playAudio = (previewUrl) => {
     if (currentTrack === previewUrl) {
-      // If the same track is clicked again, toggle play/pause
+      
       audioRef.current.paused ? audioRef.current.play() : audioRef.current.pause();
     } else {
-      // Pause the current track and start playing the new one
+      
       audioRef.current.pause();
       setCurrentTrack(previewUrl);
       audioRef.current.src = previewUrl;
@@ -63,7 +63,7 @@ const Sportify = () => {
 
   return (
     <main className="container mx-auto my-8 ">
-      <h1 className="text-7xl font-bold font mb-4 text-center">Sportify</h1>
+      <h1 className="text-7xl font-bold font mb-4 text-center">Spotify</h1>
       <div className="flex items-center justify-center mb-4">
         <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={getToken}>
           Get Music
@@ -103,7 +103,7 @@ const Sportify = () => {
     </main>
   );
 };
-export default Sportify;
+export default Spotify;
 
 
 
