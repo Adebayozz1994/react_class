@@ -1,83 +1,105 @@
-import React, { useState } from 'react'
-import axios from "axios"
-import { Toast } from 'bootstrap';
+import axios from "axios";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { validationSchema } from "../components/UserSchema";
 
+const Signik = () => {
+    const URL = "http://localhost:9000/register";
+    const navigate = useNavigate();
 
+    const { handleChange, handleSubmit, values, errors } = useFormik({
+        initialValues: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            console.log(values);
+            axios.post(URL, values)
+            navigate("/login");
 
-
-
-
-
-
-const Tenary = () => {
-    let url = "http://localhost:9000/register";
-
-    // const [name, setName] = useState("SQI template")
-    const [allUsers, setAllUsers] = useState([]);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const user = (i) => {
-        setFirstName(i.target.value)
-    }
-    const user1 = (i) => {
-        setLastName(i.target.value)
-    }
-    const user2 = (i) => {
-        setEmail(i.target.value)
-    }
-    const user3 = (i) => {
-        setPassword(i.target.value)
-    }
-
-
-
-    const changeName = () => {
-        const newUser = {
-            firstName,
-            lastName,
-            email,
-            password,
-        };
-
-        
-
-        setAllUsers((prevUsers) => [...prevUsers, newUser]);
-        axios.post(url , newUser)
-        .then((res)=>{
-            console.log(res.data);
-            Toast.success("user added successfully")
-        })
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-
-        // console.log(allUsers);
-    }
+        }
+    })
 
     return (
-        <div>
-                <input type="text" onChange={user} placeholder='first name' value={firstName} />
-                <input type="text" onChange={user1} placeholder='last name' value={lastName} />
-                <input type="email" onChange={user2} placeholder='Email' value={email} />
-                <input type="password" onChange={user3} placeholder='Password' value={password} />
-                <button onClick={changeName}>Submit</button>
-            {/* <h2>
-                {name}
-            </h2> */}
-            {/* <h1>
-                {allUsers.map((user, index) => (
-                    <div key={index}>
-                        {user.firstName} {user.lastName} {user.email} {user.password}
-                    </div>
-                ))}
-            </h1> */}
+        <div className="max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                        First Name
+                    </label>
+                    <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        onChange={handleChange}
+                        value={values.firstName}
+                        className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="First Name"
+                    />
+                    <span className="text-red-500">{errors.firstName}</span>
+                </div>
 
+                <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                        Last Name
+                    </label>
+                    <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        onChange={handleChange}
+                        value={values.lastName}
+                        className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Last Name"
+                    />
+                    <span className="text-red-500">{errors.lastName}</span>
+                </div>
+
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        Email Address
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="text"
+                        onChange={handleChange}
+                        value={values.email}
+                        className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Email Address"
+                    />
+                    <span className="text-red-500">{errors.email}</span>
+                </div>
+
+                <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        Password
+                    </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange={handleChange}
+                        value={values.password}
+                        className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Password"
+                    />
+                    <span className="text-red-500">{errors.password}</span>
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                >
+                    Sign Up
+                </button>
+            </form>
         </div>
-    )
-}
 
-export default Tenary
+    );
+};
+
+export default Signik;
