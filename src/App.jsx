@@ -13,6 +13,7 @@ import Music from "./components/music"
 import LogIn from "./components/LogIn"
 import Assignment from "./components/assignment"
 import { Routes, Route } from "react-router-dom"
+import FileUpload from "./components/FileUpload"
 
 
 function App () {
@@ -22,6 +23,7 @@ function App () {
       <Route path="/" element={<Assignment/>}/>
       <Route path="/login" element={<LogIn/>}/>
       <Route path="/sportify" element={<Sportify/>}/>
+      <Route path= "/Upload" element={<FileUpload/>}/>
 
 
     </Routes>
