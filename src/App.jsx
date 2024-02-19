@@ -14,12 +14,18 @@ import LogIn from "./components/LogIn"
 import Assignment from "./components/assignment"
 import { Routes, Route } from "react-router-dom"
 import FileUpload from "./components/FileUpload"
+import Counter from "./components/Counter"
+import Navbar from "./components/Navbar"
+import Home from "./components/Home"
 
 
 function App () {
-  return(
+  return( 
     <>
     <Routes>
+      <Route path="/Counter" element={<Counter/>}/>
+      <Route path="/navbar" element={<Navbar/>}/>
+      <Route path="/home" element={<Home/>}/>
       <Route path="/" element={<Assignment/>}/>
       <Route path="/login" element={<LogIn/>}/>
       <Route path="/sportify" element={<Sportify/>}/>
