@@ -21,7 +21,7 @@ const logIn = () => {
             localStorage.setItem("token", response.data.token);
             console.log(response.data.token);
             console.log("Login successful");
-            navigate("/sportify");
+            navigate("/dashboard");
           } else if (response.status === 404){
             console.error("Login failed:", response.data);
             // Handle login failure, show error to the user

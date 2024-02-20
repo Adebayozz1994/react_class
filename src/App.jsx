@@ -17,6 +17,7 @@ import FileUpload from "./components/FileUpload"
 import Counter from "./components/Counter"
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
+import Dashboard from "./components/Dashboard"
 
 
 function App () {
@@ -29,7 +30,7 @@ function App () {
       <Route path="/home" element={<Home/>}/>
       <Route path="/" element={<Assignment/>}/>
       <Route path="/login" element={<LogIn/>}/>
-      <Route path="/sportify" element={token ? <Sportify /> : <Navigate to="/login" />}/>
+      <Route path="/dashboard" element={token ? <Dashboard /> : <Navigate to="/login" />}/>
 
       <Route path= "/Upload" element={<FileUpload/>}/>
     </Routes>
