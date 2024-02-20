@@ -18,6 +18,8 @@ const logIn = () => {
           console.log(response.data);
           // Check the response from the server
           if (response.status === 200) {
+            localStorage.setItem("token", response.data.token);
+            console.log(response.data.token);
             console.log("Login successful");
             navigate("/sportify");
           } else if (response.status === 404){

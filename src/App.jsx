@@ -12,7 +12,7 @@ import Sportify from "./components/Sportify"
 import Music from "./components/music"
 import LogIn from "./components/LogIn"
 import Assignment from "./components/assignment"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import FileUpload from "./components/FileUpload"
 import Counter from "./components/Counter"
 import Navbar from "./components/Navbar"
@@ -20,6 +20,7 @@ import Home from "./components/Home"
 
 
 function App () {
+  let token = localStorage.getItem("token")
   return( 
     <>
     <Routes>
@@ -28,10 +29,9 @@ function App () {
       <Route path="/home" element={<Home/>}/>
       <Route path="/" element={<Assignment/>}/>
       <Route path="/login" element={<LogIn/>}/>
-      <Route path="/sportify" element={<Sportify/>}/>
+      <Route path="/sportify" element={token ? <Sportify /> : <Navigate to="/login" />}/>
+
       <Route path= "/Upload" element={<FileUpload/>}/>
-
-
     </Routes>
     
     {/* <Music/> */}
