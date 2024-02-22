@@ -4,7 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const logIn = () => {
-  const URL = "http://localhost:9000/login";
+  const URL = "http://localhost:3000/login";
   const navigate = useNavigate();
   const loginFormik = useFormik({
     initialValues: {
