@@ -18,13 +18,14 @@ import Counter from "./components/Counter"
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import Dashboard from "./components/Dashboard"
-
+import PictureFetch from "./components/PictureFetch"
 
 function App () {
   let token = localStorage.getItem("token")
   return( 
     <>
     <Routes>
+      <Route path="/pix" element={<PictureFetch/>}/>
       <Route path="/Counter" element={<Counter/>}/>
       <Route path="/navbar" element={<Navbar/>}/>
       <Route path="/home" element={<Home/>}/>
